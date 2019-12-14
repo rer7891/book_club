@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191214142951) do
+ActiveRecord::Schema.define(version: 20191214200549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,6 @@ ActiveRecord::Schema.define(version: 20191214142951) do
     t.integer "pages"
   end
 
-  add_foreign_key "book_authors", "authors"
-  add_foreign_key "book_authors", "books"
+  add_foreign_key "book_authors", "authors", on_delete: :cascade
+  add_foreign_key "book_authors", "books", on_delete: :cascade
 end
