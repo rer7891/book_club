@@ -12,12 +12,12 @@ RSpec.describe "As a user", type: :feature do
                             pages: 316,
                             publication_year: "2000")
 
-      becky = Author.create!(name: " Adam Silvera")
-      adam = Author.create!(name: "Becky Albertalli")
+      adam = Author.create!(name: "Adam Silvera")
+      becky = Author.create!(name: "Becky Albertalli")
       what_if = becky.books.create!(title: "What If It’s Us",
                             pages: 176,
                             publication_year: "2008")
-      another_book_2= becky.books.create!(title: "Another Book 2",
+      another_book_2 = becky.books.create!(title: "Another Book 2",
                             pages: 106,
                             publication_year: "2004")
       what_if.authors << adam
@@ -29,7 +29,9 @@ RSpec.describe "As a user", type: :feature do
         expect(page).to have_content(book.title)
         expect(page).to have_content(book.pages)
         expect(page).to have_content(book.publication_year)
-        book.authors.each {|author| expect(page).to have_content(author.name)}
+        book.authors.each do |author|
+          expect(page).to have_content(author.name)
+        end
       end
     end
   end
