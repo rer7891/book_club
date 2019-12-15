@@ -23,14 +23,6 @@ RSpec.describe "As a visitor", type: :feature do
     @what_if.authors << @adam
     @pretty_things.authors << @clayton
   end
-    it "each author's name is a link I can click" do
-      visit "/books"
-      expect(page).to have_link("#{@adam.name}")
-      expect(page).to have_link("#{@becky.name}")
-      expect(page).to have_link("#{@clayton.name}")
-      expect(page).to have_link("#{@sona.name}")
-    end
-
     describe "I'm then taken to /authors/:id and can see" do
       it "author's name, title of each book and ave number of pages for all books" do
         visit "/books"
@@ -38,6 +30,10 @@ RSpec.describe "As a visitor", type: :feature do
           click_link "#{@sona.name}"
         end
         expect(current_path).to eql ("/authors/#{@sona.id}")
+        expect(page).to have_content(@sona.name)
+        expect(page).to have_content(@pretty_things.title)
+        expect(page).to have_content(@another_book.title)
+        expect(page).to have_content("The average number of pages for all #{@sona.name}'s books is 286.")
       end
     end
   end
