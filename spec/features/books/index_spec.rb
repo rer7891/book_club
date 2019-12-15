@@ -24,13 +24,17 @@ RSpec.describe "As a user", type: :feature do
       pretty_things.authors << clayton
 
       visit '/books'
+
       books = [pretty_things, what_if, another_book, another_book_2]
+
       books.each do |book|
-        expect(page).to have_content(book.title)
-        expect(page).to have_content(book.pages)
-        expect(page).to have_content(book.publication_year)
-        book.authors.each do |author|
-          expect(page).to have_content(author.name)
+        within "#book-#{book.id}" do
+          expect(page).to have_content(book.title)
+          expect(page).to have_content(book.pages)
+          expect(page).to have_content(book.publication_year)
+          book.authors.each do |author|
+            expect(page).to have_content(author.name)
+          end
         end
       end
     end
