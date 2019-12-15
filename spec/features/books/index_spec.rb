@@ -33,7 +33,7 @@ RSpec.describe "As a user", type: :feature do
           expect(page).to have_content(book.pages)
           expect(page).to have_content(book.publication_year)
           book.authors.each do |author|
-            expect(page).to have_content(author.name)
+            expect(page).to have_link(author.name)
           end
         end
       end
