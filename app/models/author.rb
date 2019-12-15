@@ -3,4 +3,8 @@ class Author < ApplicationRecord
 
   has_many :book_authors
   has_many :books, through: :book_authors
+
+  def ave_page_count
+    books.average(:pages).round(2)
+  end
 end
